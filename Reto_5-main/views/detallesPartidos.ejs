@@ -1,0 +1,113 @@
+<%- include("templates/cabecera", {tituloWeb: 'Detalles del Partido' }) %>
+    <main class="container py-3 mt-5 ">
+        <h1>Detalles del Partido</h1>
+        <% if (error) { %>
+            <%= mensaje %>
+                <a href="/partidos" class="btn btn-dark btn-block my-2">
+                    Volver
+                </a>
+                <% } %>
+                    <% if (!error) { %>
+                        <form id="editar" data-id="<%= partidos.id %>">
+
+
+                            <input type="text" value="<%= partidos.local_name %>" class="form-control my-2"
+                                name="local_name" id="local_name_input">
+                            <input type="text" value="<%= partidos.visit_name %>" class="form-control my-2"
+                                name="visit_name" id="visit_name_input">
+                            <input type="text" value="<%= partidos.stadium_name %>" class="form-control my-2"
+                                name="stadium_name" id="stadium_name_input">
+                            <input type="text" value="<%= partidos.stadium_capacity %>" class="form-control my-2"
+                                name="stadium_capacity" id="stadium_capacity_input">
+                            <input type="text" value="<%= partidos.match_date %>" class="form-control my-2"
+                                name="match_date" id="match_date_input">
+                            <input type="text" value="<%= partidos.match_time %>" class="form-control my-2"
+                                name="match_time" id="match_time_input">
+                            <input type="text" value="<%= partidos.local_goals %>" class="form-control my-2"
+                                name="local_goals" id="local_goals_input">
+                            <input type="text" value="<%= partidos.visit_goals %>" class="form-control my-2"
+                                name="visit_goals" id="visit_goals_input">
+                            <input type="text" value="<%= partidos.local_img %>" class="form-control my-2"
+                                name="local_img" id="local_img_input">
+                            <input type="text" value="<%= partidos.visit_img %>" class="form-control my-2"
+                                name="visit_img" id="visit_img_input">
+
+
+                            <div class="d-grid gap-2"> <button class="btn btn-warning btn-sm" type="submit">
+                                    Editar
+                                </button>
+                            </div>
+
+                        </form>
+                        <hr>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-danger btn-sm" data-id="<%= partidos.id %>">
+                                Eliminar
+                            </button>
+                        </div>
+
+                        <% } %>
+
+
+                    </main>
+    <%- include("templates/footer") %>
+        <script>
+            const btnEliminar = document.querySelector('.btn-danger')
+            btnEliminar.addEventListener('click', async () => {
+                console.log(btnEliminar.dataset.id)
+                try {
+                    // https://developer.mozilla.org/es/docs/Web/API/HTMLElement/dataset
+                    const data = await fetch(`/partidos/${btnEliminar.dataset.id}`, {
+                        method: 'delete'
+                    })
+                    const res = await data.json()
+                    console.log(res)
+                    if (res.estado) {
+                        window.location.href = '/partidos'
+                    } else {
+                        console.log(res)
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            })
+            const formEditar = document.querySelector('#editar');
+            formEditar.addEventListener('submit', async (e) => {
+                e.preventDefault()
+                const local_name = formEditar.elements['local_name'].value
+                const visit_name = formEditar.elements['visit_name'].value
+                const stadium_name = formEditar.elements['stadium_name'].value
+                const stadium_capacity = formEditar.elements['stadium_capacity'].value
+                const match_date = formEditar.elements['match_date'].value
+                const match_time = formEditar.elements['match_time'].value
+                const local_goals = formEditar.elements['local_goals'].value
+                const visit_goals = formEditar.elements['visit_goals'].value
+                const local_img = formEditar.elements['local_img'].value
+                const visit_img = formEditar.elements['visit_img'].value
+                const id = formEditar.dataset.id
+                const data = await fetch(`/partidos/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        local_name,
+                        visit_name,
+                        stadium_name,
+                        stadium_capacity,
+                        match_date,
+                        match_time,
+                        local_goals,
+                        visit_goals,
+                        local_img,
+                        visit_img
+                    })
+                })
+                const res = await data.json()
+                if (res.estado) {
+                    window.location.href = '/partidos'
+                } else {
+                    console.log(res)
+                }
+            })
+        </script>

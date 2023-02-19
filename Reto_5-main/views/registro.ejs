@@ -1,0 +1,56 @@
+<%- include("templates/cabeceralogin.ejs", {tituloWeb:'Login'}) %>
+
+
+
+
+
+
+  <section class="resultados" id="resultados mt-5">
+    <div class="container py-3 mb-3">
+      <div class="text-center">
+        <p>&nbsp;</p>
+        <br>
+        <h2>REGISTRO</h2>
+        <p class="lead">Regístrate para acceder</p>
+      </div>
+      <div class="container mt-3">
+        <form class="formulario__register" id="formulario__register">
+          <div class="mb-3 mt-3">
+            <label for="nombre"> <p>Nombre:</p></label>
+            <input type="nombre" class="form-control" id="nombre" placeholder="Introduzca nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="pwd"><p>Correo Electrónico:</p></label>
+            <input type="email" class="form-control" id="email" placeholder="Introduzca email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="pwd"><p>Contraseña:</p></label>
+            <input type="password" class="form-control" id="pswd" placeholder="Introduzca contraseña" name="pswd" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="pwd2"><p>Repetir Contraseña:</p></label>
+            <input type="password" class="form-control" id="pswd2" placeholder="Introduzca contraseña" name="pswd2" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Registrarme</button> <br><br>
+          <a href="/">Si ya estas registrado, Inicia Sesión</a>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+
+
+<script src="/js/personalizado.js"></script>
+<script src="/js/controlRegistro.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+    crossorigin="anonymous"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,261 @@
+$primary-claro: #ffffff;
+$secondary-claro: #a1a1a1;
+$aux-claro: #e2e2e2;
+
+
+$primary-oscuro: #000000;
+$secondary-oscuro: #646a70;
+$aux-oscuro: #000000;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+$font_aton: 'Anton', sans-serif;
+
+
+
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+
+//MIXINS
+
+@mixin background-blur($blur-radius)
+{
+    background-image: radial-gradient(circle, transparent 0%, transparent 20%, rgba(0, 0, 0, 0.05) 20%, rgba(0, 0, 0, 0.05) 100%),
+        radial-gradient(circle, transparent 0%, transparent 10%, rgba(0, 0, 0, 0.1) 10%, rgba(0, 0, 0, 0.1) 100%),
+        radial-gradient(circle, transparent 0%, transparent 5%, rgba(0, 0, 0, 0.15) 5%, rgba(0, 0, 0, 0.15) 100%),
+        radial-gradient(circle, transparent 0%, transparent 2%, rgba(0, 0, 0, 0.2) 2%, rgba(0, 0, 0, 0.2) 100%),
+        radial-gradient(circle, transparent 0%, transparent 1%, rgba(0, 0, 0, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%),
+        radial-gradient(circle, transparent 0%, transparent 0%, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%);
+    background-size: $blur-radius;
+    background-repeat: repeat;
+}
+
+@mixin rounded-borders($radius)
+{
+    border-radius: $radius;
+}
+
+.button
+{
+    @include rounded-borders(10px);
+}
+
+@mixin box-shadow($shadow)
+{
+    box-shadow: $shadow;
+}
+
+.card
+{
+    @include box-shadow(2px 2px 5px #2e2e2e52);
+}
+
+@mixin font-style($font-size, $font-family, $color)
+{
+    font-size: $font-size;
+    font-family: $font-family;
+    color: $color;
+}
+
+.title
+{
+    @include font-style(24px, Arial, #c50a0a);
+}
+
+
+
+:root
+{
+
+    body
+    {
+        font-family: $font_aton;
+        background: white;
+        transition: .5s ease all;
+        nav
+        {
+            background-color: $aux-claro;
+
+            a
+            {
+                color: black;
+            }
+        }
+
+        header
+        {
+
+            .cabecera
+            {
+
+                h1,
+                p
+                {
+                    padding: 5px;
+                    color: white;
+                }
+
+                @include background-blur(30px);
+            }
+
+            background-image: url(../../img/cesped.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        main
+        {
+
+
+            //background-color: $aux-claro;
+            p,
+            h2
+            {
+                color: $aux-oscuro;
+                font-size: bold;
+            }
+
+            .card
+            {
+                @include box-shadow(5px 5px 5px #00000062);
+                background-color: white;
+
+                p,
+                h4
+                {
+                    color: $aux-oscuro;
+                    font-size: bold;
+                }
+            }
+        }
+
+        .resultados
+        {
+
+            p,
+            h2
+            {
+                color: $aux-oscuro;
+                font-size: bold;
+            }
+
+            table
+            {
+                tr
+                {
+                    td
+                    {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+
+        //Cuando el body tenga la clase oscuro, al pulsar el botón
+        &.oscuro
+        {
+
+            font-family: $font_aton;
+            background: $primary-oscuro;
+            transition: .5s ease all;
+            color: white;
+
+            nav
+            {
+                background-color: $aux-oscuro;
+
+                a
+                {
+                    color: white;
+
+                    &:hover
+                    {
+                        color: grey;
+                    }
+                }
+
+            }
+
+            header
+            {
+
+                .cabecera
+                {
+
+                    h1,
+                    p
+                    {
+                        padding: 5px;
+                        color: white;
+                    }
+
+                    @include background-blur(30px);
+                }
+
+                background-image: url(../../img/cesped.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            main
+            {
+                background-color: $aux-oscuro;
+
+
+                p, h2
+                {
+                    color: $aux-claro;
+                    font-size: bold;
+                }
+
+                .card
+                {
+                    @include box-shadow(5px 5px 5px #b3b3b362);
+                    background-color: white;
+
+                    p,
+                    h4
+                    {
+                        color: black;
+                        font-size: bold;
+                    }
+                }
+            }
+
+            .resultados
+            {
+                background-color: $aux-oscuro;
+
+                p,
+                h2
+                {
+                    color: $aux-claro;
+                    font-size: bold;
+                }
+
+                table
+                {
+                    tr
+                    {
+                        background-color: $secondary-oscuro;
+                        color: white;
+
+                        td
+                        {
+                            background-color: rgba(0, 0, 0, 0.233);
+                            color: white;
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

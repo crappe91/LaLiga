@@ -1,0 +1,24 @@
+<%- include("templates/cabecera", {tituloWeb: 'Crear Partido' }) %>
+
+    <main class="container text-center py-5 mt-5 ">
+        <h1 class="">Crear nuevo Partido</h1>
+        <br>
+        <form action="/partidos" class="my-2" method="POST">
+            <input type="text" placeholder="Local" class="form-control my-2" name="local_name" required>
+            <input type="text" placeholder="Visitante" class="form-control my-2" name="visit_name" required>
+            <input type="text" placeholder="Estadio" class="form-control my-2" name="stadium_name" required>
+            <input type="text" placeholder="Capacidad" class="form-control my-2" name="stadium_capacity" required>
+            <input type="text" placeholder="Fecha" class="form-control my-2" name="match_date" required>
+            <input type="text" placeholder="Hora" class="form-control my-2" name="match_time" required>
+            <input type="text" placeholder="Goles Local" class="form-control my-2" name="local_goals">
+            <input type="text" placeholder="Goles Visitante" class="form-control my-2" name="visit_goals">
+            <input type="text" placeholder="Escudo Local" class="form-control my-2" name="local_img" required>
+            <input type="text" placeholder="Escudo Visitante" class="form-control my-2" name="visit_img" required>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-success btn-block">
+                    Agregar
+                </button>
+            </div>
+        </form>
+    </main>
+    <%- include("templates/footer") %>

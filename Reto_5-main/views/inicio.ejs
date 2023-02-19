@@ -1,0 +1,98 @@
+<%- include("templates/cabecera.ejs", {tituloWeb:'La Liga'}) %>
+
+
+<p>&nbsp;</p>
+    <header class="header text-dark text-center  text-white py-4 ">
+        <div class="cabecera container-fluid py-3">
+            
+            <h1 id="bienvenido"></h1>
+            <p class="lead">Estate al tanto de todos los resultados</p>
+        </div>
+    </header>
+
+    <!-- PARTIDOS -->
+
+    <main class="container-fluid py-3 mb-3">
+        <section class="text-center" id="partidos">
+            <div class="container">
+                <h2>Partidos</h2>
+                <p class="lead">Fecha y horario de los partidos de la jornada</p>
+                <div class="row">
+                    <!-- Partidos con for -->
+
+                    <% if (arrayPartidos.length> 0) { %>
+                        <!--Haremos el foreach para recorrer el array-->
+                        <% arrayPartidos.forEach(partidos=> { %>
+
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="card m-2">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <h4 class="card-title"><%= partidos.local_name %>-<%= partidos.visit_name %></h4>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4 align-self-center">
+                                                <img src="/img/escudos/<%= partidos.local_img %>.png" alt="<%= partidos.local_img %>">
+                                            </div>
+                                            <div class="col-4 align-self-center">
+                                                <h4>|</h4>
+                                            </div>
+                                            <div class="col-4 align-self-center">
+                                                <img src="/img/escudos/<%= partidos.visit_img %>.png" alt="<%= partidos.visit_img %>">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <p class="" id="dia"><%= partidos.match_date %></p>
+                                        </div>
+                                        <div class="row">
+                                            <p class="" id="hora"><%= partidos.match_time %> h</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                                <% } %>
+                                    <!-- final partido con for -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- TABLA RESULTADOS -->
+
+    <section class="resultados border-top border-light" id="resultados">
+        <div class="container-fluid text-center py-3 mb-3">
+            <h2>Resultados</h2>
+            <p class="lead">Resultados de los partidos de la jornada</p>
+            <table class="table table-striped table-hover" id="resultados">
+                <tr>
+                    <th>Local</th>
+                    <th>Visitante</th>
+                    <th>Resultado</th>
+                    <th>Estadio</th>
+                </tr>
+
+<!-- Inicio Bucle -->
+
+<% if (arrayPartidos.length> 0) { %>
+    <!--Haremos el foreach para recorrer el array-->
+    <% arrayPartidos.forEach(partidos => { %>
+
+        <tr>
+            <td> <img src="/img/escudos/<%= partidos.local_img %>.png" alt="<%= partidos.local_img %>"></td>
+            <td> <img src="/img/escudos/<%= partidos.visit_img %>.png" alt="<%= partidos.visit_img %>"></td>
+            <td><%= partidos.local_goals %>-<%= partidos.visit_goals %></td>
+            <td><%= partidos.stadium_name %></td>
+        </tr>
+        <% }) %>
+        <% } %>
+<!-- Fin Bucle -->
+            </table>
+        </div>
+    </section>
+
+
+    <%- include("templates/footer.ejs") %>
